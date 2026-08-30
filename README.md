@@ -2,11 +2,9 @@ SQL Produkty i Sprzedaż 2025
 
 Opis projektu
 
-Projekt przedstawia przykładową bazę danych SQLite służącą do nauki języka SQL oraz podstaw analizy danych sprzedażowych. Baza obejmuje katalog produktów, dane klientów, dostawców, magazynów, zamówień i płatności.
+Projekt przedstawia przykładową bazę danych SQLite do nauki języka SQL i podstaw analizy danych sprzedażowych. Baza zawiera produkty z numerami EAN, kodami SKU, opisami i parametrami, a także klientów, dostawców, stany magazynowe, zamówienia i płatności.
 
-Dane sprzedażowe dotyczą roku 2025. Produkty posiadają między innymi numery EAN, kody SKU, opisy, marki, kategorie, ceny zakupu i sprzedaży oraz dodatkowe parametry, takie jak kolor, rozmiar, materiał i waga.
-
-Projekt został przygotowany jako praktyczne ćwiczenie obejmujące filtrowanie danych, sortowanie, agregacje, łączenie tabel za pomocą JOIN, tworzenie raportów oraz analizę sprzedaży według kategorii, produktów, miesięcy i kanałów dystrybucji.
+Dane sprzedażowe obejmują rok 2025. Projekt pokazuje praktyczne wykorzystanie filtrowania, sortowania, agregacji, JOIN, funkcji tekstowych, obliczania marży oraz analizy sprzedaży według produktów, kategorii, kanałów i miesięcy.
 
 Technologie
 
@@ -27,36 +25,9 @@ Git i GitHub
 
 Zawartość bazy
 
-Baza zawiera:
+Baza obejmuje 60 produktów, 400 klientów, 3 000 zamówień z 2025 roku, 7 522 pozycji zamówień, 6 kategorii, 6 dostawców oraz stany magazynowe w dwóch magazynach.
 
-•
-60 produktów,
-
-•
-400 klientów,
-
-•
-3 000 zamówień z 2025 roku,
-
-•
-7 522 pozycji zamówień,
-
-•
-6 kategorii produktów,
-
-•
-6 dostawców,
-
-•
-stany magazynowe w dwóch magazynach,
-
-•
-płatności powiązane z zamówieniami,
-
-•
-widok v_sprzedaz_szczegoly do wygodnej analizy sprzedaży.
-
-Struktura projektu
+Pliki projektu
 
 Plain Text
 
@@ -67,56 +38,18 @@ Plain Text
 ├── README.md
 └── docs/
     └── screenshots/
-        ├── 01-uruchomienie-bazy.png
-        ├── 02-lista-tabel.png
-        ├── 03-schema-produktow.png
-        ├── 04-produkty-z-ean.png
-        ├── 05-produkty-z-cenami.png
-        ├── 06-join-kategorie.png
-        ├── 07-join-dostawcy.png
-        ├── 08-sprzedaz-kategorie.png
-        ├── 09-zysk-kategorie.png
-        ├── 10-top-5-produktow.png
-        ├── 11-wszystkie-produkty.png
-        ├── 12-kanaly-dystrybucji.png
-        ├── 13-udzial-kanalow.png
-        ├── 14-sprzedaz-miesieczna.png
-        ├── 15-najlepszy-miesiac.png
-        ├── 16-stany-magazynowe.png
-        ├── 17-klienci-b2c-b2b.png
-        └── 18-podsumowanie-projektu.png
+        ├── 1.png
+        ├── 2.png
+        ├── ...
+        └── 18.png
 
 
 
-Najważniejsze tabele
+Plik .sqlite jest gotową bazą do wykonywania zapytań. Plik .sql jest tekstowym dumpem, który pozwala odtworzyć strukturę i dane w nowej bazie.
 
-Tabela
-Opis
-produkty
-Katalog produktów z EAN, SKU, cenami i parametrami
-kategorie
-Kategorie produktowe i stawki VAT
-dostawcy
-Dostawcy produktów, kraje i oceny
-klienci
-Klienci indywidualni B2C oraz firmy B2B
-zamowienia
-Nagłówki zamówień, daty, kanały i statusy
-pozycje_zamowien
-Produkty oraz ilości w poszczególnych zamówieniach
-platnosci
-Informacje o płatnościach
-stany_magazynowe
-Dostępne ilości produktów w magazynach
-v_sprzedaz_szczegoly
-Widok łączący sprzedaż, produkty, klientów i kategorie
+Uruchomienie w Windows
 
-
-
-
-Uruchomienie bazy w Windows
-
-Przejdź w PowerShellu do katalogu projektu:
+W PowerShellu przejdź do katalogu projektu:
 
 Plain Text
 
@@ -125,7 +58,7 @@ cd "C:\Users\matty\Downloads\sql-produkty-sprzedaz-2025"
 
 
 
-Uruchom plik bazy SQLite:
+Uruchom bazę:
 
 Plain Text
 
@@ -134,26 +67,18 @@ C:\sqlite\sqlite3.exe ".\produkty_sprzedaz_2025.sqlite"
 
 
 
-Po pojawieniu się promptu sqlite> włącz nagłówki i tryb kolumnowy:
+Po pojawieniu się promptu sqlite> wykonaj:
 
 SQL
 
 
 .headers on
 .mode column
-
-
-
-Sprawdź dostępne tabele:
-
-SQL
-
-
 .tables
 
 
 
-Wyświetl pięć przykładowych produktów:
+Przykładowe zapytanie:
 
 SQL
 
@@ -169,7 +94,35 @@ LIMIT 5;
 
 
 
-Przykładowe zapytania
+Nie wpisuj znaków PS> ani sqlite> — są to prompty wyświetlane automatycznie przez terminal.
+
+Najważniejsze tabele
+
+Tabela
+Opis
+produkty
+Produkty, EAN, SKU, ceny i parametry
+kategorie
+Kategorie produktów i stawki VAT
+dostawcy
+Dostawcy, kraje i oceny
+klienci
+Klienci B2C i B2B
+zamowienia
+Daty, kanały i statusy zamówień
+pozycje_zamowien
+Produkty i ilości w zamówieniach
+platnosci
+Informacje o płatnościach
+stany_magazynowe
+Ilości produktów w magazynach
+v_sprzedaz_szczegoly
+Widok ułatwiający analizę sprzedaży
+
+
+
+
+Przykładowe raporty
 
 Sprzedaż i zysk według kategorii
 
@@ -184,25 +137,22 @@ SELECT
     SUM(ilosc) AS sprzedane_sztuki
 FROM v_sprzedaz_szczegoly
 WHERE status = 'Zrealizowane'
-  AND data_zamowienia >= '2025-01-01'
-  AND data_zamowienia < '2026-01-01'
 GROUP BY kategoria
 ORDER BY zysk_netto DESC;
 
 
 
-Pięć najlepiej sprzedających się produktów
+Top 5 produktów według ilości
 
 SQL
 
 
-SELECT
-    produkt,
-    ean,
-    marka,
-    kategoria,
-    SUM(ilosc) AS sprzedane_sztuki,
-    ROUND(SUM(wartosc_netto), 2) AS sprzedaz_netto
+SELECT produkt,
+       ean,
+       marka,
+       kategoria,
+       SUM(ilosc) AS sprzedane_sztuki,
+       ROUND(SUM(wartosc_netto), 2) AS sprzedaz_netto
 FROM v_sprzedaz_szczegoly
 WHERE status = 'Zrealizowane'
 GROUP BY produkt_id, produkt, ean, marka, kategoria
@@ -217,12 +167,11 @@ Sprzedaż według kanałów dystrybucji
 SQL
 
 
-SELECT
-    kanal,
-    COUNT(DISTINCT zamowienie_id) AS liczba_zamowien,
-    SUM(ilosc) AS sprzedane_sztuki,
-    ROUND(SUM(wartosc_netto), 2) AS sprzedaz_netto,
-    ROUND(SUM(wartosc_brutto), 2) AS sprzedaz_brutto
+SELECT kanal,
+       COUNT(DISTINCT zamowienie_id) AS liczba_zamowien,
+       SUM(ilosc) AS sprzedane_sztuki,
+       ROUND(SUM(wartosc_netto), 2) AS sprzedaz_netto,
+       ROUND(SUM(wartosc_brutto), 2) AS sprzedaz_brutto
 FROM v_sprzedaz_szczegoly
 WHERE status = 'Zrealizowane'
 GROUP BY kanal
@@ -230,139 +179,136 @@ ORDER BY sprzedaz_netto DESC;
 
 
 
-Jak interpretować zysk
+Dokumentacja wizualna
 
-W projekcie zysk netto liczony jest według wzoru:
+Poniższe screeny są przypisane zgodnie z rzeczywistą zawartością plików w folderze docs/screenshots.
 
-Plain Text
+1. Uruchomienie bazy i sprawdzenie katalogu
 
+PowerShell przechodzi do katalogu projektu, wyświetla pliki, uruchamia SQLite i pokazuje prompt sqlite>.
 
-zysk netto = sprzedaż netto − koszt zakupu
 
+![Screen 1](docs/screenshots/1.png)
 
+2. Lista tabel
 
-Koszt zakupu jest liczony jako:
+Ustawiono nagłówki i tryb kolumnowy, a następnie wykonano .tables. Wynik pokazuje tabele i widok dostępne w bazie.
 
-Plain Text
 
+![Screen 2](docs/screenshots/2.png)
 
-cena zakupu netto × liczba sprzedanych sztuk
+3. Schemat tabeli produktów
 
+Polecenie .schema produkty pokazuje definicję tabeli, klucz główny, klucze obce, ceny, EAN, SKU i ograniczenia danych.
 
 
-W raportach uwzględniane są zamówienia ze statusem Zrealizowane. Zamówienia anulowane i zwrócone nie są traktowane jako faktyczna sprzedaż.
+![Screen 3](docs/screenshots/3.png)
 
-Galeria wyników
+4. Wybrane kolumny produktów
 
-## Dokumentacja wizualna
+Zapytanie prezentuje wybrane informacje z tabeli produkty, w tym identyfikator, EAN, SKU, nazwę, opis i parametry.
 
-### 1. Uruchomienie bazy
 
-Screen pokazuje uruchomienie bazy SQLite z poziomu terminala PowerShell.
+![Screen 4](docs/screenshots/4.png)
 
-![Uruchomienie bazy](docs/screenshots/1.png)
+5. Pełne rekordy produktów
 
-### 2. Konfiguracja SQLite
+Zapytanie SELECT * FROM produkty LIMIT 5 pokazuje pięć pełnych rekordów wraz ze wszystkimi kolumnami tabeli.
 
-Screen pokazuje ustawienie nagłówków i trybu kolumnowego.
 
-![Konfiguracja SQLite](docs/screenshots/2.png)
+![Screen 5](docs/screenshots/5.png)
 
-### 3. Lista tabel
+6. Filtrowanie produktów po cenie
 
-Screen przedstawia tabele oraz widok dostępne w bazie danych.
+Zapytanie wybiera aktywne produkty w przedziale cenowym od 50 do 150 zł i sortuje je według ceny malejąco.
 
-![Lista tabel](docs/screenshots/3.png)
 
-### 4. Schemat tabeli produktów
+![Screen 6](docs/screenshots/6.png)
 
-Screen pokazuje strukturę tabeli `produkty`, w tym EAN, SKU, ceny i parametry produktów.
+7. Najdroższe produkty
 
-![Schemat produktów](docs/screenshots/4.png)
+Zapytanie wybiera 10 produktów o najwyższej cenie sprzedaży netto.
 
-### 5. Produkty i identyfikatory
 
-Screen przedstawia przykładowe rekordy produktów wraz z identyfikatorami EAN i SKU.
+![Screen 7](docs/screenshots/7.png)
 
-![Produkty i identyfikatory](docs/screenshots/5.png)
+8. Wyszukiwanie tekstowe LIKE
 
-### 6. Produkty i ceny
+Zapytanie wykorzystuje LIKE do znalezienia produktów, których nazwa zawiera słowo „bezprzewodowe”.
 
-Screen pokazuje zapytanie wybierające produkty oraz ich ceny sprzedaży netto.
 
-![Produkty i ceny](docs/screenshots/6.png)
+![Screen 8](docs/screenshots/8.png)
 
-### 7. Połączenie z kategoriami
+9. JOIN produktów, kategorii i dostawców
 
-Screen prezentuje użycie `JOIN` do połączenia produktów z kategoriami.
+Zapytanie łączy tabele produkty, kategorie i dostawcy, pokazując kategorię, dostawcę, kraj oraz cenę produktu.
 
-![Połączenie z kategoriami](docs/screenshots/7.png)
 
-### 8. Połączenie z dostawcami
+![Screen 9](docs/screenshots/9.png)
 
-Screen pokazuje dane produktów połączone z informacjami o dostawcach.
+10. Sprzedaż i zysk według kategorii
 
-![Połączenie z dostawcami](docs/screenshots/8.png)
+Raport pokazuje sprzedaż netto, koszt zakupu, zysk netto i liczbę sprzedanych sztuk dla każdej kategorii.
 
-### 9. Sprzedaż według kategorii
 
-Screen przedstawia sprzedaż netto oraz liczbę sprzedanych sztuk w kategoriach.
+![Screen 10](docs/screenshots/10.png)
 
-![Sprzedaż według kategorii](docs/screenshots/9.png)
+11. Marża procentowa według kategorii
 
-### 10. Zysk według kategorii
+Raport oblicza marżę procentową jako udział zysku netto w sprzedaży netto.
 
-Screen pokazuje koszt zakupu i zysk netto dla poszczególnych kategorii.
 
-![Zysk według kategorii](docs/screenshots/10.png)
+![Screen 11](docs/screenshots/11.png)
 
-### 11. Top 5 produktów
+12. Top 5 produktów według ilości
 
-Screen prezentuje pięć produktów o największej liczbie sprzedanych sztuk.
+Raport pokazuje pięć produktów o największej liczbie sprzedanych sztuk. Drugim kryterium sortowania jest sprzedaż netto.
 
-![Top 5 produktów](docs/screenshots/11.png)
 
-### 12. Wszystkie produkty według sprzedaży
+![Screen 12](docs/screenshots/12.png)
 
-Screen pokazuje pełny ranking produktów uporządkowany według liczby sprzedanych sztuk.
+13. Pełny ranking produktów według ilości
 
-![Ranking produktów](docs/screenshots/12.png)
+To rozszerzona wersja rankingu bez LIMIT 5, pokazująca wszystkie produkty uporządkowane według sprzedanych sztuk.
 
-### 13. Sprzedaż według kanałów
 
-Screen przedstawia liczbę zamówień, sprzedane sztuki i sprzedaż według kanałów dystrybucji.
+![Screen 13](docs/screenshots/13.png)
 
-![Kanały dystrybucji](docs/screenshots/13.png)
+14. Sprzedaż według kanałów dystrybucji
 
-### 14. Udział kanałów w sprzedaży
+Raport porównuje liczbę zamówień, sprzedane sztuki, sprzedaż netto i sprzedaż brutto w kanałach dystrybucji.
 
-Screen pokazuje udział procentowy kanałów dystrybucji w sprzedaży netto.
 
-![Udział kanałów](docs/screenshots/14.png)
+![Screen 14](docs/screenshots/14.png)
 
-### 15. Sprzedaż miesięczna
+15. Udział kanałów w sprzedaży
 
-Screen przedstawia sprzedaż w kolejnych miesiącach 2025 roku.
+Zapytanie wykorzystuje funkcję okna do obliczenia procentowego udziału każdego kanału w całkowitej sprzedaży netto.
 
-![Sprzedaż miesięczna](docs/screenshots/15.png)
 
-### 16. Najlepszy miesiąc
+![Screen 15](docs/screenshots/15.png)
 
-Screen pokazuje miesiąc z najwyższą wartością sprzedaży netto.
+16. Sprzedaż miesięczna w 2025 roku
 
-![Najlepszy miesiąc](docs/screenshots/16.png)
+Raport grupuje sprzedaż po miesiącu i pokazuje liczbę zamówień, sprzedane sztuki oraz sprzedaż netto.
 
-### 17. Stany magazynowe
 
-Screen prezentuje produkty, których stan magazynowy spadł poniżej ustalonego progu.
+![Screen 16](docs/screenshots/16.png)
 
-![Stany magazynowe](docs/screenshots/17.png)
+17. Najlepszy miesiąc sprzedażowy
 
-### 18. Podsumowanie projektu
+Zapytanie wybiera miesiąc z najwyższą sprzedażą netto. W przedstawionym wyniku jest to listopad 2025.
 
-Screen przedstawia końcowe podsumowanie pracy z bazą danych i wykonanych analiz.
 
-![Podsumowanie projektu](docs/screenshots/18.png)
+![Screen 17](docs/screenshots/17.png)
+
+18. Produkty poniżej progu magazynowego
+
+Raport pokazuje SKU, nazwę produktu, magazyn, dostępną ilość i próg zamówienia dla produktów wymagających uzupełnienia.
+
+
+![Screen 18](docs/screenshots/18.png)
+
 
 
 
@@ -387,7 +333,7 @@ Oblicz sprzedaż netto według miesięcy 2025 roku.
 Znajdź pięć produktów z największą liczbą sprzedanych sztuk.
 
 7.
-Oblicz zysk według kategorii.
+Oblicz zysk i marżę według kategorii.
 
 8.
 Porównaj sprzedaż klientów B2C i B2B.
@@ -398,20 +344,7 @@ Znajdź produkty poniżej progu zamówienia w magazynie.
 10.
 Oblicz udział kanałów dystrybucji w sprzedaży netto.
 
-Odtworzenie bazy z pliku SQL
+Status projektu
 
-Jeżeli chcesz utworzyć nową kopię bazy z tekstowego dumpa SQL, wykonaj w PowerShellu:
-
-Plain Text
-
-
-C:\sqlite\sqlite3.exe ".\kopia_bazy.sqlite" < ".\produkty_sprzedaz_2025.sql"
-
-
-
-Plik .sqlite jest gotową bazą do pracy, natomiast plik .sql zawiera instrukcje tworzące tabele, indeksy, widok i dane.
-
-Cel edukacyjny
-
-Projekt pozwala przećwiczyć podstawowe i średniozaawansowane elementy SQL: SELECT, WHERE, ORDER BY, LIMIT, LIKE, GROUP BY, funkcje agregujące, JOIN, ROUND, COUNT(DISTINCT ...), podzapytania oraz funkcje okna. Jest również przykładem uporządkowania analizy danych w repozytorium GitHub.
+Projekt zawiera gotową bazę SQLite, dump SQL, dokumentację uruchomienia, przykładowe zapytania oraz 18 screenów pokazujących kolejne etapy pracy z bazą.
 
