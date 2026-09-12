@@ -54,7 +54,7 @@ W PowerShellu przejdź do katalogu projektu:
 Plain Text
 
 
-cd "C:\Users\matty\Downloads\sql-produkty-sprzedaz-2025"
+cd "C:\Users\X\Downloads\sql-produkty-sprzedaz-2025"
 
 
 
@@ -92,9 +92,6 @@ SELECT produkt_id,
 FROM produkty
 LIMIT 5;
 
-
-
-Nie wpisuj znaków PS> ani sqlite> — są to prompty wyświetlane automatycznie przez terminal.
 
 Najważniejsze tabele
 
